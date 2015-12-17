@@ -1,0 +1,48 @@
+package test;
+
+import hexapod.geometry.Base;
+import hexapod.geometry.Cube;
+import hexapod.geometry.Point;
+import hexapod.geometry.Vector;
+import hexapod.parts.Construct;
+import hexapod.visualizer.Raytracer;
+import hexapod.visualizer.Scene;
+import hexapod.visualizer.Visualizer;
+import hexapod.visualizer.WireframeVisualizer;
+
+public class FlyingCube {
+
+	public static void main(String[] args) throws Exception {
+		WireframeVisualizer w = new WireframeVisualizer(640, 480, 500, 600, true);
+		Raytracer r = new Raytracer(640, 480, 500, 600, false);
+		r.fr = w.fr;
+		r.buff = w.buff;
+		Visualizer v = w;
+		v.setTitle("Flying cube");
+		Scene s = new Scene();
+		s.lightPoint = new Point(1000, 200, 200);
+		for (double d = 0; ; d += 0.01) {
+			if (s.objects.size() > 0) {
+				s.objects.clear();
+			}
+			
+			s.objects.add(new Construct(Base.DEFAULT, new Cube(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d).rotateY(2 * d), 200)));
+//			s.objects.add(new Construct(Base.DEFAULT, new Cube(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d).rotateY(2 * d), 50, 100, 200)));
+//			s.objects.add(new Construct(Base.DEFAULT, new HalfCone(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d).rotateY(2 * d), 200, 100, 300, 20)));
+//			s.objects.add(new Construct(Base.DEFAULT, new MergedCylinders(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d).rotateY(2 * d), 80, 60 + 20*Math.sin(d), 100, 100, 40)));
+//			s.objects.add(new Knee(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d), 80, 60, 40, 40, 100, 60, Math.sin(d), 10, 40));
+//			s.objects.add(new Femur(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d), 80, 60, 60, 40, 100, 20, 80, Math.sin(d), 40));
+//			s.objects.add(new Construct(Base.DEFAULT, new LongHalfCylinder(new Base(Point.O.translate(Vector.Z.mul(300)), Vector.X, Vector.Y).rotateX(d), 80, 40, 100, 40)));
+			
+			if (w.getSpaceToggle()) {
+				v = r;
+			}
+			else {
+				v = w;
+			}
+			v.visualize(s);
+			Thread.sleep(20);
+		}
+	}
+	
+}
