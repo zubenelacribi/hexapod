@@ -1,2 +1,2 @@
 # hexapod
-This is a hexapod emulator which is used by training human-beings to control a six-legged device.
+This is a hexapod emulator which is used for training human-beings to control a six-legged device.
