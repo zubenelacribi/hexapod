@@ -10,8 +10,6 @@ import hexapod.geometry.Point;
 import hexapod.geometry.Vector;
 import hexapod.parts.Construct;
 import hexapod.parts.DistalPhalanx;
-import hexapod.parts.Foot;
-import hexapod.parts.Leg;
 import hexapod.parts.MergedCylinders;
 import hexapod.parts.ProximalPhalanx;
 import hexapod.visualizer.Raytracer;
@@ -52,7 +50,8 @@ public class FlyingCube {
 			//					new DistalPhalanx(Base.DEFAULT, 40),
 			//					new ProximalPhalanx(Base.DEFAULT.translate(Vector.X.mul(DistalPhalanx.LENGTH + DistalPhalanx.R1 + DistalPhalanx.R2)), 40)));
 
-			s.objects.add(instantiate("test.part.SpecialConstruct", d, 2 * d));
+//			s.objects.add(instantiate("test.part.SpecialConstruct", d, 1 * d));
+			s.objects.add(new SpecialConstruct(d, d, 0));
 
 			if (w.getSpaceToggle()) {
 				v = r;
