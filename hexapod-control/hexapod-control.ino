@@ -61,7 +61,7 @@ void setup() {
   right_dist_knee.write(90);
 
 
-  delay(1000);
+  delay(5000);
 }
 
 double a = 0.0;
@@ -111,6 +111,6 @@ void loop() {
   right_dist_lift.write(y6);
   right_dist_knee.write(z6);
 
-  delay(10); // step speed
+  delay(3); // step speed
   a += 0.015; // step angle 
 }
